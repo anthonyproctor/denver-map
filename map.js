@@ -12,6 +12,16 @@ function initMap() {
     center: {lat: 39.7392044, lng: -104.9902439},
     zoom: 13
   });
+
+  // This autocomplete is for use in the search within time entry box.
+  var timeAutocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('search-within-time-text'));
+  // This autocomplete is for use in the geocoder entry box.
+  var zoomAutocomplete = new google.maps.places.Autocomplete(
+      document.getElementById('zoom-to-area-text'));
+  //Bias the boundaries within the map for the zoom to area text.
+  zoomAutocomplete.bindTo('bounds', map);
+
   //These are the location listings that will be shown to the user.
   //Normally these are in a database.
   var locations = [
@@ -88,6 +98,7 @@ function initMap() {
     polygon.getPath().addListener('insert_at', searchWithinPolygon);
   });
 }
+
 // This function populates the infowindow when the marker is clicked. We'll only allow
 // one infowindow which will open at the marker that is clicked, and populate based
 // on that markers position.
