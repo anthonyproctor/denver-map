@@ -13,7 +13,7 @@ var placeMarkers = [];
 function initMap() {
   // Constructor creates a new map - only center and zoom are required.
   map = new google.maps.Map(document.getElementById('map'), {
-    center: {lat: 39.7392044, lng: -104.9902439},
+    center: {lat: 39.7088478, lng: -105.0419703},
     zoom: 12
   });
 
@@ -168,12 +168,15 @@ function populateInfoWindow(marker, infowindow) {
 // This function will loop through the markers array and display them all.
 function showListings() {
   var bounds = new google.maps.LatLngBounds();
+
   // Extend the boundaries of the map for each marker and display the marker
   for (var i = 0; i < markers.length; i++) {
     markers[i].setMap(map);
+
     bounds.extend(markers[i].position);
   }
   map.fitBounds(bounds);
+
 }
 // This function will loop through the listings and hide them all.
 function hideMarkers(markers) {
